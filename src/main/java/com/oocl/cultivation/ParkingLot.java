@@ -10,7 +10,13 @@ public class ParkingLot {
 
     public ParkingTicket park(Car car) {
         ParkingTicket ticket = new ParkingTicket();
-        ticketCarMap.put(ticket,car);
+        if(ticketCarMap.size() == 10)
+        {
+            return null;
+        }
+        else {
+            ticketCarMap.put(ticket, car);
+        }
         return ticket;
     }
 
