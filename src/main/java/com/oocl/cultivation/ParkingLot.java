@@ -3,16 +3,27 @@ package com.oocl.cultivation;
 import java.util.*;
 
 public class ParkingLot {
+    private int capacity;
+
+    public ParkingLot(int capacity) {
+        this.capacity = capacity;
+    }
+    public ParkingLot(){
+        this.capacity = 10;
+    }
+
+
     private Map<ParkingTicket, Car> ticketCarMap = new HashMap<>();
     private ArrayList<Car> ticketList = new ArrayList<Car>();
     private Car car = new Car();
     private Car ticket = new Car();
-
+    String status = "";
     public ParkingTicket park(Car car) {
         ParkingTicket ticket = new ParkingTicket();
-        if(ticketCarMap.size() == 10)
+
+        if(ticketCarMap.size() == capacity)
         {
-            return null;
+            throw new NotEnoughPositionException("Not enough position");
         }
         else {
             ticketCarMap.put(ticket, car);
@@ -23,14 +34,17 @@ public class ParkingLot {
     public Car fetch(ParkingTicket parkingTicket) {
         //System.out.println(ticketCarMap.get(parkingTicket));
         car = ticketCarMap.get(parkingTicket);
+        if(car == null){
+            throw new ProvideTicketException("Please provide your parking ticket.");
+        }
+       status = ticketList.contains(car) ? "exist"
+               : "new car";
 
-       ticket = ticketList.contains(car) ? null
-               : ticketCarMap.get(parkingTicket);
-
-       if(ticket == null) {
-           return null;
+       if(status.equals("exist")) {
+           throw new UnrecognizedParkingTicket("Unrecognized Parking Ticket");
        }
        else {
+           ticket = ticketCarMap.get(parkingTicket);
            ticketList.add(car);
        }
 

@@ -50,6 +50,7 @@ class ParkingBoyTest {
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         ParkingTicket parkingTicket1 = parkingBoy.park(carA);
         ParkingTicket parkingTicket2 = new ParkingTicket();
+
         //When
         Car fetchedCarA = parkingBoy.fetch(parkingTicket2);
 
@@ -65,10 +66,10 @@ class ParkingBoyTest {
         ParkingTicket parkingTicket1 = parkingBoy.park(carA);
 
         //When
-        Car fetchedCarA = parkingBoy.fetch(null);
-
+        Exception exception = assertThrows(ProvideTicketException.class, () ->  parkingBoy.fetch(null));
         //Then
-        assertNull(fetchedCarA);
+        assertEquals("Please provide your parking ticket.",exception.getMessage());
+        //assertNull(fetchedCarA);
     }
     @Test
     public void should_return_no_cars_when_fetching_given_used_ticket(){
@@ -79,41 +80,26 @@ class ParkingBoyTest {
 
         //When
         Car fetchedCarA = parkingBoy.fetch(parkingTicket1);
-        Car fetchedCarB = parkingBoy.fetch(parkingTicket1);
+        //Car fetchedCarB = parkingBoy.fetch(parkingTicket1);
+        Exception exception = assertThrows(UnrecognizedParkingTicket.class, () -> parkingBoy.fetch(parkingTicket1));
         //Then
-        assertNull(fetchedCarB);
+
+        //assertNull(fetchedCarB);
+        assertEquals("Unrecognized Parking Ticket",exception.getMessage());
     }
     @Test
     public void should_return_no_ticket_when_car_park_is_full(){
         //Given
         Car carA = new Car();
-        Car carB = new Car();
-        Car carC = new Car();
-        Car carD = new Car();
-        Car carE = new Car();
-        Car carF = new Car();
-        Car carG = new Car();
-        Car carH = new Car();
-        Car carI = new Car();
-        Car carJ = new Car();
-        Car carK = new Car();
 
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
         ParkingTicket parkingTicket1 = parkingBoy.park(carA);
-        ParkingTicket parkingTicket2 = parkingBoy.park(carB);
-        ParkingTicket parkingTicket3 = parkingBoy.park(carC);
-        ParkingTicket parkingTicket4 = parkingBoy.park(carD);
-        ParkingTicket parkingTicket5 = parkingBoy.park(carE);
-        ParkingTicket parkingTicket6 = parkingBoy.park(carF);
-        ParkingTicket parkingTicket7 = parkingBoy.park(carG);
-        ParkingTicket parkingTicket8 = parkingBoy.park(carH);
-        ParkingTicket parkingTicket9 = parkingBoy.park(carI);
-        ParkingTicket parkingTicket10 = parkingBoy.park(carJ);
 
         //When
-        ParkingTicket parkingTicket11 = parkingBoy.park(carK);
+        Exception exception = assertThrows(NotEnoughPositionException.class, () -> parkingBoy.park(carA));
 
         //Then
-        assertNull(parkingTicket11);
+        assertEquals("Not enough position",exception.getMessage());
+
     }
 }
