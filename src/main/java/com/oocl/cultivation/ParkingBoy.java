@@ -1,26 +1,51 @@
 package com.oocl.cultivation;
 
+import java.util.ArrayList;
+
 public class ParkingBoy {
 
 
     private final ParkingLot parkingLot;
+    ArrayList<ParkingLot> parkingLotList = new ArrayList<ParkingLot>();
+    private int max = 0;
+    int availableSpace = 0;
+    int value;
 
-    public ParkingBoy(ParkingLot parkingLot) {
 
+    public ParkingBoy() {
+        ParkingLot parkingLot = new ParkingLot();
         this.parkingLot = parkingLot;
+    }
+    public void manage(ParkingLot parkingLot){
+        this.parkingLotList.add(parkingLot);
     }
 
     public ParkingTicket park(Car car) {
-        return parkingLot.park(car);
+
+        for(int i = 0; i < this.parkingLotList.size(); i++){
+            value = this.parkingLotList.get(i).getOccupied();
+
+            if(value == 10){
+                System.out.println(this.parkingLotList.get(i).getOccupied());
+                //availableSpace = 20;
+            }
+            else {
+                availableSpace = i;
+            }
+        }
+        System.out.println(availableSpace);
+        return this.parkingLotList.get(availableSpace).park(car);
     }
 
-    public Car fetch(ParkingTicket parkingTicket) {
 
-        return parkingLot.fetch(parkingTicket);
+    public Car fetch(ParkingTicket parkingTicket) {
+        return this.parkingLotList.get(availableSpace).fetch(parkingTicket);
+        //return parkingLot.fetch(parkingTicket);
     }
     public int geLotNumber(){
 
-        return parkingLot.getLotNumber();
+        return this.parkingLotList.get(availableSpace).getLotNumber();
+        //return parkingLot.getLotNumber();
 
     }
 }

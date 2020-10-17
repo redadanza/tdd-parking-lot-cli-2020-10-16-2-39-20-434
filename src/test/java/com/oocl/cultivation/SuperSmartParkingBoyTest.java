@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class SmartParkingBoyTest {
+public class SuperSmartParkingBoyTest {
     @Test
     public void should_return_a_parking_ticket_when_parking_given_a_car_to_parking_boy() {
         //GIVEN
         Car car = new Car();
         //ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
-        SmartParkingBoy parkingBoy = new SmartParkingBoy();
+        SuperSmartParkingBoy parkingBoy = new SuperSmartParkingBoy();
         parkingBoy.manage(new ParkingLot(0,1));
         //WHEN
         ParkingTicket ticket = parkingBoy.park(car);
@@ -24,7 +24,7 @@ public class SmartParkingBoyTest {
         //GIVEN
         Car car = new Car();
         //ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(2);
+        SuperSmartParkingBoy parkingBoy = new SuperSmartParkingBoy(2);
         parkingBoy.manage(new ParkingLot(3,1));
         parkingBoy.manage(new ParkingLot(7,2));
         //WHEN
@@ -34,5 +34,4 @@ public class SmartParkingBoyTest {
         //assertNotNull(ticket);
         assertEquals(1, parkingBoy.geLotNumber());
     }
-
 }

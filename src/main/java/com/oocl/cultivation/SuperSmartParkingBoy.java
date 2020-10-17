@@ -1,10 +1,8 @@
 package com.oocl.cultivation;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class SmartParkingBoy{
-
+public class SuperSmartParkingBoy{
     private ParkingLot parkingLot;
     ArrayList<ParkingLot> parkingLotList = new ArrayList<ParkingLot>();
     private int numberOfLots;
@@ -12,10 +10,10 @@ public class SmartParkingBoy{
     private int max = 0;
     int largestSpace = 0;
 
-    public SmartParkingBoy(int numberOfLots) {
+    public SuperSmartParkingBoy(int numberOfLots) {
         this.numberOfLots = numberOfLots;
     }
-    public SmartParkingBoy() {
+    public SuperSmartParkingBoy() {
         ParkingLot parkingLot = new ParkingLot();
         this.parkingLot = parkingLot;
     }
@@ -41,5 +39,6 @@ public class SmartParkingBoy{
         return  this.parkingLotList.get(largestSpace).getLotNumber();
 
     }
+
 
 }

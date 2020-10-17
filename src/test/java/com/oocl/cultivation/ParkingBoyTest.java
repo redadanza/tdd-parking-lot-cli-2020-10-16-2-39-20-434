@@ -9,7 +9,8 @@ class ParkingBoyTest {
     public void should_return_a_parking_ticket_when_parking_given_a_car_to_parking_boy() {
         //GIVEN
         Car car = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.manage(new ParkingLot());
 
         //WHEN
         ParkingTicket ticket = parkingBoy.park(car);
@@ -21,7 +22,8 @@ class ParkingBoyTest {
     public void should_return_correct_car_when_fetching_given_a_correct_ticket(){
         //Given
         Car car = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.manage(new ParkingLot());
         ParkingTicket parkingTicket = parkingBoy.park(car);
         //When
         Car fetchedCar = parkingBoy.fetch(parkingTicket);
@@ -33,7 +35,8 @@ class ParkingBoyTest {
         //Given
         Car carA = new Car();
         Car carB = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.manage(new ParkingLot());
         ParkingTicket parkingTicket1 = parkingBoy.park(carA);
         ParkingTicket parkingTicket2 = parkingBoy.park(carB);
         //When
@@ -47,22 +50,24 @@ class ParkingBoyTest {
     public void should_return_no_cars_when_fetching_given_wrong_tickets(){
         //Given
         Car carA = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.manage(new ParkingLot());
         ParkingTicket parkingTicket1 = parkingBoy.park(carA);
         ParkingTicket parkingTicket2 = new ParkingTicket();
 
         //When
-        Car fetchedCarA = parkingBoy.fetch(parkingTicket2);
-
+        //Car fetchedCarA = parkingBoy.fetch(parkingTicket2);
+        Exception exception = assertThrows(ProvideTicketException.class, () ->  parkingBoy.fetch(parkingTicket2));
         //Then
-        assertNull(fetchedCarA);
-
+        //assertNull(fetchedCarA);
+        assertEquals("Please provide your parking ticket.",exception.getMessage());
     }
     @Test
     public void should_return_no_cars_when_fetching_given_no_ticket(){
         //Given
         Car carA = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.manage(new ParkingLot());
         ParkingTicket parkingTicket1 = parkingBoy.park(carA);
 
         //When
@@ -75,7 +80,8 @@ class ParkingBoyTest {
     public void should_return_no_cars_when_fetching_given_used_ticket(){
         //Given
         Car carA = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.manage(new ParkingLot());
         ParkingTicket parkingTicket1 = parkingBoy.park(carA);
 
         //When
@@ -92,7 +98,8 @@ class ParkingBoyTest {
         //Given
         Car carA = new Car();
 
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10, 1));
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.manage(new ParkingLot(10,1));
         //ParkingTicket parkingTicket1 = parkingBoy.park(carA);
 
         //When
@@ -106,7 +113,9 @@ class ParkingBoyTest {
     public void should_return_parking2_when_parking1_full_given_car_to_parking_boy(){
         //GIVEN
         Car car = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10, 10, 2));
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.manage(new ParkingLot(10,1));
+        parkingBoy.manage(new ParkingLot(3,2));
 
         //WHEN
         ParkingTicket ticket = parkingBoy.park(car);
@@ -120,8 +129,8 @@ class ParkingBoyTest {
     public void should_return_parking1_when_parking1_notFull_given_car_to_parking_boy(){
         //GIVEN
         Car car = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10, 9, 2));
-
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.manage(new ParkingLot(9,1));
         //WHEN
         ParkingTicket ticket = parkingBoy.park(car);
 
