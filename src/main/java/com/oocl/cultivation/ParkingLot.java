@@ -3,8 +3,19 @@ package com.oocl.cultivation;
 import java.util.*;
 
 public class ParkingLot {
+    private Map<ParkingTicket, Car> ticketCarMap = new HashMap<>();
+    private ArrayList<Car> ticketList = new ArrayList<Car>();
+    private Car car = new Car();
+    private Car ticket = new Car();
     private int capacity;
+    private int occupied;
+    private int lotNumber;
+    String status = "";
 
+    public ParkingLot(int capacity,int occupied) {
+        this.capacity = capacity;
+        this.occupied = occupied;
+    }
     public ParkingLot(int capacity) {
         this.capacity = capacity;
     }
@@ -12,12 +23,11 @@ public class ParkingLot {
         this.capacity = 10;
     }
 
+    public int getLotNumber() {
+        //this.lotNumber = 1;
+        return lotNumber;
+    }
 
-    private Map<ParkingTicket, Car> ticketCarMap = new HashMap<>();
-    private ArrayList<Car> ticketList = new ArrayList<Car>();
-    private Car car = new Car();
-    private Car ticket = new Car();
-    String status = "";
     public ParkingTicket park(Car car) {
         ParkingTicket ticket = new ParkingTicket();
 
@@ -32,7 +42,6 @@ public class ParkingLot {
     }
 
     public Car fetch(ParkingTicket parkingTicket) {
-        //System.out.println(ticketCarMap.get(parkingTicket));
         car = ticketCarMap.get(parkingTicket);
         if(car == null){
             throw new ProvideTicketException("Please provide your parking ticket.");

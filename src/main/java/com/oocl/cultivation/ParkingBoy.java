@@ -17,4 +17,9 @@ public class ParkingBoy {
 
         return parkingLot.fetch(parkingTicket);
     }
+    public int geLotNumber(){
+
+        return parkingLot.getLotNumber();
+
+    }
 }
