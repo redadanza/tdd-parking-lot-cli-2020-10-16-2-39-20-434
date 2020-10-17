@@ -10,17 +10,27 @@ public class ParkingLot {
     private int capacity;
     private int occupied;
     private int lotNumber;
+    private int numberOfLots;
+    private int lotsFull = 0;
     String status = "";
 
-    public ParkingLot(int capacity,int occupied) {
+    public ParkingLot(int capacity,int occupied, int numberOfLots) {
         this.capacity = capacity;
         this.occupied = occupied;
+        this.numberOfLots = numberOfLots;
+        this.lotNumber = 1;
     }
     public ParkingLot(int capacity) {
         this.capacity = capacity;
+        this.occupied = 0;
+        this.lotNumber = 1;
+        this.numberOfLots = 1;
     }
     public ParkingLot(){
         this.capacity = 10;
+        this.occupied = 0;
+        this.lotNumber = 1;
+        this.numberOfLots = 1;
     }
 
     public int getLotNumber() {
@@ -31,9 +41,17 @@ public class ParkingLot {
     public ParkingTicket park(Car car) {
         ParkingTicket ticket = new ParkingTicket();
 
-        if(ticketCarMap.size() == capacity)
+        if(ticketCarMap.size() == capacity || occupied == capacity)
         {
-            throw new NotEnoughPositionException("Not enough position");
+            lotsFull++;
+            if(lotsFull == numberOfLots) {
+                throw new NotEnoughPositionException("Not enough position");
+            }
+            else{
+                lotNumber++;
+                capacity += 10;
+                ticketCarMap.put(ticket,car);
+            }
         }
         else {
             ticketCarMap.put(ticket, car);

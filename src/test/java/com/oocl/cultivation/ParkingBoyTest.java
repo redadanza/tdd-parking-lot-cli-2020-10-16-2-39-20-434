@@ -101,20 +101,19 @@ class ParkingBoyTest {
         //Then
         assertEquals("Not enough position",exception.getMessage());
     }
+
     @Test
     public void should_return_parking2_when_parking1_full_given_car_to_parking_boy(){
         //GIVEN
         Car car = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10));
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10, 10, 2));
 
         //WHEN
         ParkingTicket ticket = parkingBoy.park(car);
 
         //THEN
-        assertEquals(1, parkingBoy.geLotNumber());
+        assertEquals(2, parkingBoy.geLotNumber());
         //parkingBoy.geLotNumber()
         assertNotNull(ticket);
     }
-
-
 }
