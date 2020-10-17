@@ -116,4 +116,18 @@ class ParkingBoyTest {
         //parkingBoy.geLotNumber()
         assertNotNull(ticket);
     }
+    @Test
+    public void should_return_parking1_when_parking1_notFull_given_car_to_parking_boy(){
+        //GIVEN
+        Car car = new Car();
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10, 9, 2));
+
+        //WHEN
+        ParkingTicket ticket = parkingBoy.park(car);
+
+        //THEN
+        assertEquals(1, parkingBoy.geLotNumber());
+        //parkingBoy.geLotNumber()
+        assertNotNull(ticket);
+    }
 }
