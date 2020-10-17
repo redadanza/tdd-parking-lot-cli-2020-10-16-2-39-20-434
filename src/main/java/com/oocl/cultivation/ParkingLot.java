@@ -96,4 +96,7 @@ public class ParkingLot {
 
         return ticket;
     }
+    public int getAvailable(){
+        return capacity - occupied;
+    }
 }
