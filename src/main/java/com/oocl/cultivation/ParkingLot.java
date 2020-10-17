@@ -14,16 +14,22 @@ public class ParkingLot {
     private int lotsFull = 0;
     String status = "";
 
+//    public ParkingLot(int occupied) {
+//        this.capacity = 10;
+//        this.occupied = occupied;
+//        this.numberOfLots = 1;
+//        this.lotNumber = 1;
+//    }
     public ParkingLot(int capacity,int occupied, int numberOfLots) {
         this.capacity = capacity;
         this.occupied = occupied;
         this.numberOfLots = numberOfLots;
         this.lotNumber = 1;
     }
-    public ParkingLot(int capacity) {
-        this.capacity = capacity;
-        this.occupied = 0;
-        this.lotNumber = 1;
+    public ParkingLot(int occupied, int lotNumber) {
+        this.capacity = 10;
+        this.occupied = occupied;
+        this.lotNumber = lotNumber;
         this.numberOfLots = 1;
     }
     public ParkingLot(){
@@ -36,6 +42,14 @@ public class ParkingLot {
     public int getLotNumber() {
         //this.lotNumber = 1;
         return lotNumber;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public int getOccupied() {
+        return occupied;
     }
 
     public ParkingTicket park(Car car) {
@@ -74,6 +88,11 @@ public class ParkingLot {
            ticket = ticketCarMap.get(parkingTicket);
            ticketList.add(car);
        }
+
+        return ticket;
+    }
+    public ParkingTicket smartPark(Car car){
+        ParkingTicket ticket = new ParkingTicket();
 
         return ticket;
     }

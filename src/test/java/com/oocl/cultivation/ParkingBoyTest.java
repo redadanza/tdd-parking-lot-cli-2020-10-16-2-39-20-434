@@ -92,8 +92,8 @@ class ParkingBoyTest {
         //Given
         Car carA = new Car();
 
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
-        ParkingTicket parkingTicket1 = parkingBoy.park(carA);
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(10, 1));
+        //ParkingTicket parkingTicket1 = parkingBoy.park(carA);
 
         //When
         Exception exception = assertThrows(NotEnoughPositionException.class, () -> parkingBoy.park(carA));
