@@ -35,7 +35,8 @@ public class SmartParkingBoy{
     }
 
     public Car fetch(ParkingTicket parkingTicket) {
-        return parkingLot.fetch(parkingTicket);
+        return this.parkingLotList.get(largestSpace).fetch(parkingTicket);
+        //return parkingLot.fetch(parkingTicket);
     }
     public int geLotNumber(){
         return  this.parkingLotList.get(largestSpace).getLotNumber();
