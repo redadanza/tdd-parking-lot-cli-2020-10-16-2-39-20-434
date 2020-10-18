@@ -5,10 +5,8 @@ import java.util.ArrayList;
 public class ParkingBoy {
 
     ArrayList<ParkingLot> parkingLotList = new ArrayList<ParkingLot>();
-    private int max = 0;
     int availableSpace = 0;
     int value;
-
 
     public ParkingBoy() {
         ParkingLot parkingLot = new ParkingLot();

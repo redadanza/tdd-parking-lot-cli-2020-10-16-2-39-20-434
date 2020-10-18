@@ -58,10 +58,10 @@ public class SmartParkingBoyTest {
         ParkingTicket parkingTicket2 = new ParkingTicket();
 
         //When
-        //Car fetchedCarA = parkingBoy.fetch(parkingTicket2);
+
         Exception exception = assertThrows(ProvideTicketException.class, () ->  parkingBoy.fetch(parkingTicket2));
         //Then
-        //assertNull(fetchedCarA);
+
         assertEquals("Please provide your parking ticket.",exception.getMessage());
     }
     @Test
@@ -76,7 +76,7 @@ public class SmartParkingBoyTest {
         Exception exception = assertThrows(ProvideTicketException.class, () ->  parkingBoy.fetch(null));
         //Then
         assertEquals("Please provide your parking ticket.",exception.getMessage());
-        //assertNull(fetchedCarA);
+
     }
     @Test
     public void should_return_no_cars_when_fetching_given_used_ticket(){
@@ -88,11 +88,11 @@ public class SmartParkingBoyTest {
 
         //When
         Car fetchedCarA = parkingBoy.fetch(parkingTicket1);
-        //Car fetchedCarB = parkingBoy.fetch(parkingTicket1);
+
         Exception exception = assertThrows(UnrecognizedParkingTicket.class, () -> parkingBoy.fetch(parkingTicket1));
         //Then
 
-        //assertNull(fetchedCarB);
+
         assertEquals("Unrecognized Parking Ticket",exception.getMessage());
     }
     @Test
@@ -102,7 +102,7 @@ public class SmartParkingBoyTest {
 
         SmartParkingBoy parkingBoy = new SmartParkingBoy();
         parkingBoy.manage(new ParkingLot(10,1));
-        //ParkingTicket parkingTicket1 = parkingBoy.park(carA);
+
 
         //When
         Exception exception = assertThrows(NotEnoughPositionException.class, () -> parkingBoy.park(carA));
@@ -114,7 +114,7 @@ public class SmartParkingBoyTest {
     public void should_return_a_parking_lot1_when_parking_boy_manages_2_lots_and_lot1_has_more_spaces() {
         //GIVEN
         Car car = new Car();
-        //ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+
         SmartParkingBoy parkingBoy = new SmartParkingBoy(2);
         parkingBoy.manage(new ParkingLot(3,1));
         parkingBoy.manage(new ParkingLot(7,2));
@@ -122,7 +122,7 @@ public class SmartParkingBoyTest {
         ParkingTicket ticket = parkingBoy.park(car);
 
         //THEN
-        //assertNotNull(ticket);
+
         assertEquals(1, parkingBoy.geLotNumber());
     }
 
