@@ -11,6 +11,7 @@ public class ParkingManager {
     private int max = 0;
     int availableSpace = 0;
     int value;
+    int index;
 
 
     public ParkingManager() {
@@ -25,8 +26,13 @@ public class ParkingManager {
         this.parkingBoyLotList.add(parkingBoy);
     }
 
-    public ParkingTicket parkingBoyPark(Car car){
-        return null;
+    public ParkingTicket parkingBoyPark(Car car, String name){
+         index = this.parkingBoyName.indexOf(name);
+        this.parkingBoyLotList.get(index).manage(new ParkingLot());
+
+        ParkingTicket ticket = this.parkingBoyLotList.get(index).park(car);
+
+        return ticket;
     }
     public ParkingTicket park(Car car) {
         for(int i = 0; i < this.parkingLotList.size(); i++){
@@ -53,6 +59,7 @@ public class ParkingManager {
 
     }
     public String getParkingBoy(){
-        return null;
+
+        return this.parkingBoyName.get(index);
     }
 }

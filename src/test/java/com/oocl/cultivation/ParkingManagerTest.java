@@ -13,11 +13,9 @@ public class ParkingManagerTest {
         ParkingManager parkingManager = new ParkingManager();
         parkingManager.manage(new ParkingBoy(),"red");
         //WHEN
-        ParkingTicket ticket = parkingManager.parkingBoyPark(car);
-        //ParkingTicket ticket = parkingBoy.park(car);
+        ParkingTicket ticket = parkingManager.parkingBoyPark(car,"red");
 
         //THEN
-        //assertNotNull(ticket);
         assertEquals("red",parkingManager.getParkingBoy());
     }
 }
