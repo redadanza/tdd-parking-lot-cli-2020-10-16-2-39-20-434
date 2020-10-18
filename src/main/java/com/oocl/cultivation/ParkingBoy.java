@@ -5,8 +5,9 @@ import java.util.ArrayList;
 public class ParkingBoy {
 
     ArrayList<ParkingLot> parkingLotList = new ArrayList<ParkingLot>();
-    int availableSpace = 0;
+    ParkingLot availableSpace = null;
     int value;
+    int index=0;
 
     public ParkingBoy() {
         ParkingLot parkingLot = new ParkingLot();
@@ -16,22 +17,24 @@ public class ParkingBoy {
     }
 
     public ParkingTicket park(Car car) {
-
-        for(int i = 0; i < this.parkingLotList.size(); i++){
-            value = this.parkingLotList.get(i).getOccupied();
-            availableSpace = value != 10 ? i
-                            : availableSpace;
+        for(ParkingLot parkingLot: this.parkingLotList){
+            value = parkingLot.getOccupied();
+            availableSpace = value != 10 ? parkingLot
+                            :availableSpace;
         }
-        return this.parkingLotList.get(availableSpace).park(car);
+        try {
+            return availableSpace.park(car);
+        }
+        catch (Exception e){throw new NotEnoughPositionException("Not enough position");}
     }
-
 
     public Car fetch(ParkingTicket parkingTicket) {
-        return this.parkingLotList.get(availableSpace).fetch(parkingTicket);
+
+        return availableSpace.fetch(parkingTicket);
     }
     public int geLotNumber(){
-        return this.parkingLotList.get(availableSpace).getLotNumber();
 
+        return availableSpace.getLotNumber();
     }
 
 }
