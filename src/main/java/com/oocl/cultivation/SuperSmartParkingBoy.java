@@ -6,7 +6,6 @@ public class SuperSmartParkingBoy{
     private ParkingLot parkingLot;
     ArrayList<ParkingLot> parkingLotList = new ArrayList<ParkingLot>();
     private int numberOfLots;
-    private int lotNumber = 1;
     private double max = 0;
     int largestSpace = 0;
 
@@ -24,12 +23,10 @@ public class SuperSmartParkingBoy{
     public ParkingTicket park(Car car) {
 
         for(int i = 0; i < this.parkingLotList.size(); i++){
-            System.out.println(this.parkingLotList.get(i).getRatio() + "index value: "+ i);
             if(this.parkingLotList.get(i).getRatio() >= max){
                 max = this.parkingLotList.get(i).getRatio();
                 largestSpace = i;
             }
-
         }
         return this.parkingLotList.get(largestSpace).park(car);
     }

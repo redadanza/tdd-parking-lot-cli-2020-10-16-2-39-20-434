@@ -13,8 +13,7 @@ public class ParkingBoy {
 
 
     public ParkingBoy() {
-        ParkingLot parkingLot = new ParkingLot();
-        this.parkingLot = parkingLot;
+        this.parkingLot = new ParkingLot();
     }
     public void manage(ParkingLot parkingLot){
         this.parkingLotList.add(parkingLot);
@@ -24,28 +23,18 @@ public class ParkingBoy {
 
         for(int i = 0; i < this.parkingLotList.size(); i++){
             value = this.parkingLotList.get(i).getOccupied();
-
-            if(value == 10){
-                System.out.println(this.parkingLotList.get(i).getOccupied());
-                //availableSpace = 20;
-            }
-            else {
-                availableSpace = i;
-            }
+            availableSpace = value != 10 ? i
+                            : availableSpace;
         }
-        System.out.println(availableSpace);
         return this.parkingLotList.get(availableSpace).park(car);
     }
 
 
     public Car fetch(ParkingTicket parkingTicket) {
         return this.parkingLotList.get(availableSpace).fetch(parkingTicket);
-        //return parkingLot.fetch(parkingTicket);
     }
     public int geLotNumber(){
-
         return this.parkingLotList.get(availableSpace).getLotNumber();
-        //return parkingLot.getLotNumber();
 
     }
 

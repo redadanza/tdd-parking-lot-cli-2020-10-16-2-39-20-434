@@ -58,7 +58,8 @@ public class ParkingManager {
     }
     public int geLotNumber(){
 
-        return this.parkingLotList.get(availableSpace).getLotNumber();
+        return this.parkingBoyLotList.get(index).geLotNumber();
+
 
     }
     public String getParkingBoy(){

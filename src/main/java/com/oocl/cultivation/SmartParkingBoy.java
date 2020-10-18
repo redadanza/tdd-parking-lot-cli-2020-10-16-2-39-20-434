@@ -8,7 +8,6 @@ public class SmartParkingBoy{
     private ParkingLot parkingLot;
     ArrayList<ParkingLot> parkingLotList = new ArrayList<ParkingLot>();
     private int numberOfLots;
-    private int lotNumber = 1;
     private int max = 0;
     int largestSpace = 0;
 
@@ -36,7 +35,6 @@ public class SmartParkingBoy{
 
     public Car fetch(ParkingTicket parkingTicket) {
         return this.parkingLotList.get(largestSpace).fetch(parkingTicket);
-        //return parkingLot.fetch(parkingTicket);
     }
     public int geLotNumber(){
         return  this.parkingLotList.get(largestSpace).getLotNumber();
