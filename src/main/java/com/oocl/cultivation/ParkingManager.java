@@ -2,32 +2,38 @@ package com.oocl.cultivation;
 
 import java.util.ArrayList;
 
-public class ParkingBoy {
-
-
-    private final ParkingLot parkingLot;
+public class ParkingManager {
+    //private final ParkingLot parkingLot;
+    private final ParkingBoy parkingBoy;
     ArrayList<ParkingLot> parkingLotList = new ArrayList<ParkingLot>();
+    ArrayList<ParkingBoy> parkingBoyLotList = new ArrayList<ParkingBoy>();
+    ArrayList<String> parkingBoyName = new ArrayList<>();
     private int max = 0;
     int availableSpace = 0;
     int value;
 
 
-    public ParkingBoy() {
-        ParkingLot parkingLot = new ParkingLot();
-        this.parkingLot = parkingLot;
+    public ParkingManager() {
+        ParkingBoy parkingBoy = new ParkingBoy();
+        this.parkingBoy = parkingBoy;
     }
-    public void manage(ParkingLot parkingLot){
-        this.parkingLotList.add(parkingLot);
+//    public void manage(ParkingLot parkingLot){
+//        this.parkingLotList.add(parkingLot);
+//    }
+    public void manage(ParkingBoy parkingBoy, String name){
+        this.parkingBoyName.add(name);
+        this.parkingBoyLotList.add(parkingBoy);
     }
 
+    public ParkingTicket parkingBoyPark(Car car){
+        return null;
+    }
     public ParkingTicket park(Car car) {
-
         for(int i = 0; i < this.parkingLotList.size(); i++){
             value = this.parkingLotList.get(i).getOccupied();
 
             if(value == 10){
                 System.out.println(this.parkingLotList.get(i).getOccupied());
-                //availableSpace = 20;
             }
             else {
                 availableSpace = i;
@@ -40,13 +46,13 @@ public class ParkingBoy {
 
     public Car fetch(ParkingTicket parkingTicket) {
         return this.parkingLotList.get(availableSpace).fetch(parkingTicket);
-        //return parkingLot.fetch(parkingTicket);
     }
     public int geLotNumber(){
 
         return this.parkingLotList.get(availableSpace).getLotNumber();
-        //return parkingLot.getLotNumber();
 
     }
-
+    public String getParkingBoy(){
+        return null;
+    }
 }
