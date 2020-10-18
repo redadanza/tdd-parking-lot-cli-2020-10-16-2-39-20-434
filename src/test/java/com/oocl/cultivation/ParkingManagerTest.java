@@ -81,7 +81,7 @@ public class ParkingManagerTest {
         assertEquals("red",parkingManager.getParkingBoy());
     }
     @Test
-    public void should_return_flash_when_given_car_to_manager_and_asked_red_to_park() {
+    public void should_not_return_flash_when_given_car_to_manager_and_asked_red_to_park() {
         //GIVEN
         Car car = new Car();
         Car car2 = new Car();

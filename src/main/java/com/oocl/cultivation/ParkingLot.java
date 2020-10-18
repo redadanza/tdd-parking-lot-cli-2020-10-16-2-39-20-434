@@ -5,10 +5,10 @@ import java.util.*;
 public class ParkingLot {
     private Map<ParkingTicket, Car> ticketCarMap = new HashMap<>();
     private ArrayList<Car> ticketList = new ArrayList<Car>();
-    private int capacity;
-    private int occupied;
-    private int lotNumber;
-    private int numberOfLots;
+    private int capacity = 10;
+    private int occupied = 0;
+    private int lotNumber = 1;
+    private int numberOfLots = 1;
     private int lotsFull = 0;
     String status = "";
 
@@ -16,19 +16,12 @@ public class ParkingLot {
             this.capacity = capacity;
             this.occupied = occupied;
             this.lotNumber = lotNumber;
-            this.numberOfLots = 1;
     }
     public ParkingLot(int occupied, int lotNumber) {
-        this.capacity = 10;
         this.occupied = occupied;
         this.lotNumber = lotNumber;
-        this.numberOfLots = 1;
     }
     public ParkingLot(){
-        this.capacity = 10;
-        this.occupied = 0;
-        this.lotNumber = 1;
-        this.numberOfLots = 1;
     }
 
     public int getLotNumber() {

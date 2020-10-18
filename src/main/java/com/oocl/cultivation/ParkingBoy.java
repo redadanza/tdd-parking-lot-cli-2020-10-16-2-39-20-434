@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ParkingBoy {
 
-    ArrayList<ParkingLot> parkingLotList = new ArrayList<ParkingLot>();
+    private ArrayList<ParkingLot> parkingLotList = new ArrayList<ParkingLot>();
     ParkingLot availableSpace = null;
     int value;
     int index=0;

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SmartParkingBoy extends ParkingBoy{
-
     ArrayList<ParkingLot> parkingLotList = new ArrayList<ParkingLot>();
     private int max = 0;
     int largestSpace = 0;
