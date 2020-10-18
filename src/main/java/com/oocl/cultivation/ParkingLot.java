@@ -20,15 +20,18 @@ public class ParkingLot {
 //        this.numberOfLots = 1;
 //        this.lotNumber = 1;
 //    }
-    public ParkingLot(int capacity,int occupied, int numberOfLots) {
-        this.capacity = capacity;
-        this.occupied = occupied;
-        this.numberOfLots = numberOfLots;
-        this.lotNumber = 1;
-    }
-//    public ParkingLot(int capacity,int occupied, int lotNumber){
-//
+//    public ParkingLot(int capacity,int occupied, int numberOfLots) {
+//        this.capacity = capacity;
+//        this.occupied = occupied;
+//        this.numberOfLots = numberOfLots;
+//        this.lotNumber = 1;
 //    }
+    public ParkingLot(int capacity,int occupied, int lotNumber){
+            this.capacity = capacity;
+            this.occupied = occupied;
+            this.lotNumber = lotNumber;
+            this.numberOfLots = 1;
+    }
     public ParkingLot(int occupied, int lotNumber) {
         this.capacity = 10;
         this.occupied = occupied;
@@ -101,5 +104,8 @@ public class ParkingLot {
     }
     public int getAvailable(){
         return capacity - occupied;
+    }
+    public double getRatio(){
+        return capacity/occupied;
     }
 }

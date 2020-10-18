@@ -25,8 +25,8 @@ public class SuperSmartParkingBoyTest {
         Car car = new Car();
         //ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         SuperSmartParkingBoy parkingBoy = new SuperSmartParkingBoy(2);
-        parkingBoy.manage(new ParkingLot(3,1));
-        parkingBoy.manage(new ParkingLot(7,2));
+        parkingBoy.manage(new ParkingLot(15,3,1));
+        parkingBoy.manage(new ParkingLot(20,5,2));
         //WHEN
         ParkingTicket ticket = parkingBoy.park(car);
 
