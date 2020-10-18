@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 public class ParkingBoy {
 
-
-    private final ParkingLot parkingLot;
     ArrayList<ParkingLot> parkingLotList = new ArrayList<ParkingLot>();
     private int max = 0;
     int availableSpace = 0;
@@ -13,7 +11,7 @@ public class ParkingBoy {
 
 
     public ParkingBoy() {
-        this.parkingLot = new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot();
     }
     public void manage(ParkingLot parkingLot){
         this.parkingLotList.add(parkingLot);

@@ -5,18 +5,14 @@ import java.util.List;
 
 public class SmartParkingBoy{
 
-    private ParkingLot parkingLot;
     ArrayList<ParkingLot> parkingLotList = new ArrayList<ParkingLot>();
-    private int numberOfLots;
     private int max = 0;
     int largestSpace = 0;
 
     public SmartParkingBoy(int numberOfLots) {
-        this.numberOfLots = numberOfLots;
     }
     public SmartParkingBoy() {
         ParkingLot parkingLot = new ParkingLot();
-        this.parkingLot = parkingLot;
     }
     public void manage(ParkingLot parkingLot){
         this.parkingLotList.add(parkingLot);

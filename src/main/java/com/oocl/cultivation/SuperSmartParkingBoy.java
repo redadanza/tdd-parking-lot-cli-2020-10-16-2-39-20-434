@@ -3,18 +3,14 @@ package com.oocl.cultivation;
 import java.util.ArrayList;
 
 public class SuperSmartParkingBoy{
-    private ParkingLot parkingLot;
     ArrayList<ParkingLot> parkingLotList = new ArrayList<ParkingLot>();
-    private int numberOfLots;
     private double max = 0;
     int largestSpace = 0;
 
     public SuperSmartParkingBoy(int numberOfLots) {
-        this.numberOfLots = numberOfLots;
     }
     public SuperSmartParkingBoy() {
         ParkingLot parkingLot = new ParkingLot();
-        this.parkingLot = parkingLot;
     }
     public void manage(ParkingLot parkingLot){
         this.parkingLotList.add(parkingLot);
