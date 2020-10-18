@@ -50,8 +50,11 @@ public class ParkingManager {
     }
 
 
-    public Car fetch(ParkingTicket parkingTicket) {
-        return this.parkingLotList.get(availableSpace).fetch(parkingTicket);
+    public Car fetch(ParkingTicket parkingTicket, String name) {
+        index = this.parkingBoyName.indexOf(name);
+
+        return this.parkingBoyLotList.get(index).fetch(parkingTicket);
+        //return this.parkingLotList.get(availableSpace).fetch(parkingTicket);
     }
     public int geLotNumber(){
 
