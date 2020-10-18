@@ -6,7 +6,7 @@ public class ParkingManager {
     ArrayList<ParkingLot> parkingLotList = new ArrayList<ParkingLot>();
     ArrayList<ParkingBoy> parkingBoyLotList = new ArrayList<ParkingBoy>();
     ArrayList<String> parkingBoyName = new ArrayList<>();
-    int availableSpace = 0;
+    ParkingLot availableSpace;
     int value;
     int index;
 
@@ -27,12 +27,15 @@ public class ParkingManager {
         return this.parkingBoyLotList.get(index).park(car);
     }
     public ParkingTicket park(Car car) {
-        for(int i = 0; i < this.parkingLotList.size(); i++){
-            value = this.parkingLotList.get(i).getOccupied();
-            availableSpace = value != 10 ? i
-                    : availableSpace;
+        for(ParkingLot parkingLot: this.parkingLotList){
+            value = parkingLot.getOccupied();
+            availableSpace = value != 10 ? parkingLot
+                    :availableSpace;
         }
-        return this.parkingLotList.get(availableSpace).park(car);
+        try {
+            return availableSpace.park(car);
+        }
+        catch (Exception e){throw new NotEnoughPositionException("Not enough position");}
     }
 
 
