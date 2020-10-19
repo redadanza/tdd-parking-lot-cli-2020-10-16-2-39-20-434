@@ -10,7 +10,7 @@ public class ParkingManagerTest {
         //GIVEN
         CarParked car = new CarParked();
         ParkingManager parkingManager = new ParkingManager();
-        parkingManager.manage(new ParkingBoy("red"),"red");
+        parkingManager.manage(new ParkingBoy("red"));
         parkingManager.assignParkingLot("red", new ParkingLot());
         //WHEN
         ParkingTicket ticket = parkingManager.parkingBoyPark(car,"red");
@@ -23,7 +23,7 @@ public class ParkingManagerTest {
         //Given
         CarParked car = new CarParked();
         ParkingManager parkingManager = new ParkingManager();
-        parkingManager.manage(new ParkingBoy("red"),"red");
+        parkingManager.manage(new ParkingBoy("red"));
         parkingManager.assignParkingLot("red", new ParkingLot());
         ParkingTicket ticket = parkingManager.parkingBoyPark(car,"red");
 
@@ -39,8 +39,8 @@ public class ParkingManagerTest {
         CarParked carA = new CarParked();
         CarParked carB = new CarParked();
         ParkingManager parkingManager = new ParkingManager();
-        parkingManager.manage(new ParkingBoy("red"),"red");
-        parkingManager.manage(new ParkingBoy("flash"),"flash");
+        parkingManager.manage(new ParkingBoy("red"));
+        parkingManager.manage(new ParkingBoy("flash"));
         parkingManager.assignParkingLot("red", new ParkingLot());
         parkingManager.assignParkingLot("flash", new ParkingLot());
         ParkingTicket ticket = parkingManager.parkingBoyPark(carA,"red");
@@ -59,8 +59,8 @@ public class ParkingManagerTest {
         CarParked carA = new CarParked();
         CarParked carB = new CarParked();
         ParkingManager parkingManager = new ParkingManager();
-        parkingManager.manage(new ParkingBoy("red"),"red");
-        parkingManager.manage(new ParkingBoy("flash"),"flash");
+        parkingManager.manage(new ParkingBoy("red"));
+        parkingManager.manage(new ParkingBoy("flash"));
         parkingManager.assignParkingLot("red", new ParkingLot());
         parkingManager.assignParkingLot("flash", new ParkingLot());
         ParkingTicket ticket = parkingManager.parkingBoyPark(carA,"red");
@@ -77,7 +77,7 @@ public class ParkingManagerTest {
         //GIVEN
         CarParked car = new CarParked();
         ParkingManager parkingManager = new ParkingManager();
-        parkingManager.manage(new ParkingBoy("red"),"red");
+        parkingManager.manage(new ParkingBoy("red"));
         parkingManager.assignParkingLot("red", new ParkingLot());
         //WHEN
         ParkingTicket ticket = parkingManager.parkingBoyPark(car,"red");
@@ -90,8 +90,8 @@ public class ParkingManagerTest {
         //GIVEN
         CarParked car = new CarParked();
         ParkingManager parkingManager = new ParkingManager();
-        parkingManager.manage(new ParkingBoy("red"),"red");
-        parkingManager.manage(new ParkingBoy("flash"),"flash");
+        parkingManager.manage(new ParkingBoy("red"));
+        parkingManager.manage(new ParkingBoy("flash"));
         parkingManager.assignParkingLot("red", new ParkingLot());
         parkingManager.assignParkingLot("flash", new ParkingLot());
         ParkingTicket ticket = parkingManager.parkingBoyPark(car,"red");

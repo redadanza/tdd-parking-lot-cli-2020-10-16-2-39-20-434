@@ -114,7 +114,7 @@ public class SmartParkingBoyTest {
         //GIVEN
         CarParked car = new CarParked();
 
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(2);
+        SmartParkingBoy parkingBoy = new SmartParkingBoy();
         parkingBoy.manage(new ParkingLot(3,1));
         parkingBoy.manage(new ParkingLot(7,2));
         //WHEN

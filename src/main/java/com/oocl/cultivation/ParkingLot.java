@@ -4,11 +4,10 @@ import java.util.*;
 
 public class ParkingLot {
     private Map<ParkingTicket, CarParked> ticketCarMap = new HashMap<>();
-    private ArrayList<CarParked> ticketList = new ArrayList<CarParked>();
+    private ArrayList<CarParked> ticketList = new ArrayList<>();
     private int capacity;
     private int occupied;
     private int lotNumber;
-    String status = "";
     public ParkingLot(int capacity,int occupied, int lotNumber){
             this.capacity = capacity;
             this.occupied = occupied;
@@ -47,21 +46,16 @@ public class ParkingLot {
 
     public CarParked fetch(ParkingTicket parkingTicket) {
         CarParked car = ticketCarMap.get(parkingTicket);
-        if(car == null){
-            throw new ProvideTicketException("Please provide your parking ticket.");
-        }
-       status = ticketList.contains(car) ? "exist"
-               : "new car";
+        Optional.ofNullable(car).orElseThrow(()->new ProvideTicketException("Please provide your parking ticket."));
+        CarParked ticket;
 
-        CarParked ticket = new CarParked();
-        if(status.equals("exist")) {
+        if(ticketList.stream().anyMatch(cars->cars.equals(car))) {
            throw new UnrecognizedParkingTicket("Unrecognized Parking Ticket");
        }
        else {
            ticket = ticketCarMap.get(parkingTicket);
            ticketList.add(car);
        }
-
         return ticket;
     }
     public int getAvailable(){

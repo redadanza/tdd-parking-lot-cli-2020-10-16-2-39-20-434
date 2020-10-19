@@ -3,13 +3,10 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class SmartParkingBoy extends ParkingBoy{
-    ArrayList<ParkingLot> parkingLotList = new ArrayList<ParkingLot>();
+    ArrayList<ParkingLot> parkingLotList = new ArrayList<>();
     int largestSpace = 0;
 
-    public SmartParkingBoy(int numberOfLots) {
-    }
     public SmartParkingBoy() {
-        ParkingLot parkingLot = new ParkingLot();
     }
     public void manage(ParkingLot parkingLot){
         this.parkingLotList.add(parkingLot);

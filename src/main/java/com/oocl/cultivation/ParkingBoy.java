@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class ParkingBoy {
 
-    private ArrayList<ParkingLot> parkingLotList = new ArrayList<ParkingLot>();
+    public static final int FULL_PARKING = 10;
+    private ArrayList<ParkingLot> parkingLotList = new ArrayList<>();
     ParkingLot availableSpace = null;
     private String name = "";
 
@@ -18,7 +19,7 @@ public class ParkingBoy {
     }
 
     public ParkingTicket park(CarParked car) {
-        availableSpace = this.parkingLotList.stream().filter(x->x.getOccupied() != 10).findAny().orElseThrow(()->new NotEnoughPositionException("Not enough position"));
+        availableSpace = this.parkingLotList.stream().filter(parkingLot->parkingLot.getOccupied() != FULL_PARKING).findAny().orElseThrow(()->new NotEnoughPositionException("Not enough position"));
 
         return availableSpace.park(car);
     }

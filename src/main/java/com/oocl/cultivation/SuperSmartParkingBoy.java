@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class SuperSmartParkingBoy{
-    ArrayList<ParkingLot> parkingLotList = new ArrayList<ParkingLot>();
+    ArrayList<ParkingLot> parkingLotList = new ArrayList<>();
 
     ParkingLot parkingLot;
 
     public SuperSmartParkingBoy() {
-        ParkingLot parkingLot = new ParkingLot();
     }
     public void manage(ParkingLot parkingLot){
         this.parkingLotList.add(parkingLot);

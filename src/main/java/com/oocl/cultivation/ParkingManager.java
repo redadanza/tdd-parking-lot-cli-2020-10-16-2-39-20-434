@@ -1,6 +1,7 @@
 package com.oocl.cultivation;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ParkingManager {
     ArrayList<ParkingLot> parkingLotList = new ArrayList<>();
@@ -10,33 +11,32 @@ public class ParkingManager {
     public ParkingManager() {
     }
 
-    public void manage(ParkingBoy parkingBoy, String name){
+    public void manage(ParkingBoy parkingBoy){
         this.parkingBoyLotList.add(parkingBoy);
     }
     public void assignParkingLot(String name, ParkingLot parkingLot){
-
-        parkingBoyLotList.stream().filter(x->name.equals(x.getName())).findAny().orElse(null).manage(parkingLot);
+        Objects.requireNonNull(parkingBoyLotList.stream().filter(parkingBoy -> name.equals(parkingBoy.getName())).findAny().orElse(null)).manage(parkingLot);
     }
-    public ParkingTicket parkingBoyPark(CarParked car, String name){
+    public ParkingTicket parkingBoyPark(CarParked car, String parkingBoyName){
 
-       return parkingBoyLotList.stream().filter(x -> name.equals(x.getName())).findAny().orElse(null).park(car);
+       return Objects.requireNonNull(parkingBoyLotList.stream().filter(parkingBoy -> parkingBoyName.equals(parkingBoy.getName())).findAny().orElse(null)).park(car);
 
     }
     public ParkingTicket park(CarParked car) {
-        availableSpace = this.parkingLotList.stream().filter(x->x.getOccupied() != 10).findAny().orElseThrow(()->new NotEnoughPositionException("Not enough position"));
+        availableSpace = this.parkingLotList.stream().filter(parkingLot->parkingLot.getOccupied() != 10).findAny().orElseThrow(()->new NotEnoughPositionException("Not enough position"));
 
         return availableSpace.park(car);
     }
 
 
-    public CarParked fetch(ParkingTicket parkingTicket, String name) {
-        return this.parkingBoyLotList.stream().filter(x -> name.equals(x.getName())).findAny().orElse(null).fetch(parkingTicket);
+    public CarParked fetch(ParkingTicket parkingTicket, String parkingBoyName) {
+        return Objects.requireNonNull(this.parkingBoyLotList.stream().filter(parkingBoy -> parkingBoyName.equals(parkingBoy.getName())).findAny().orElse(null)).fetch(parkingTicket);
 
     }
     public int geLotNumber(){
         return availableSpace.getLotNumber();
     }
     public String getParkingBoy(ParkingTicket ticket, CarParked car){
-        return this.parkingBoyLotList.stream().filter(x -> car.equals(x.fetch(ticket))).findAny().orElse(null).getName();
+        return Objects.requireNonNull(this.parkingBoyLotList.stream().filter(parkingLot -> car.equals(parkingLot.fetch(ticket))).findAny().orElse(null)).getName();
     }
 }
