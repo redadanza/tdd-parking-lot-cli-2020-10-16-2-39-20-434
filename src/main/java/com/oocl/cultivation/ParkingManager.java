@@ -3,51 +3,40 @@ package com.oocl.cultivation;
 import java.util.ArrayList;
 
 public class ParkingManager {
-    ArrayList<ParkingLot> parkingLotList = new ArrayList<ParkingLot>();
-    ArrayList<ParkingBoy> parkingBoyLotList = new ArrayList<ParkingBoy>();
-    ArrayList<String> parkingBoyName = new ArrayList<>();
+    ArrayList<ParkingLot> parkingLotList = new ArrayList<>();
+    ArrayList<ParkingBoy> parkingBoyLotList = new ArrayList<>();
     ParkingLot availableSpace;
-    int value;
-    int index;
-
 
     public ParkingManager() {
-        ParkingBoy parkingBoy = new ParkingBoy();
     }
 
     public void manage(ParkingBoy parkingBoy, String name){
-        this.parkingBoyName.add(name);
         this.parkingBoyLotList.add(parkingBoy);
     }
+    public void assignParkingLot(String name, ParkingLot parkingLot){
 
-    public ParkingTicket parkingBoyPark(Car car, String name){
-         index = this.parkingBoyName.indexOf(name);
-        this.parkingBoyLotList.get(index).manage(new ParkingLot());
-
-        return this.parkingBoyLotList.get(index).park(car);
+        parkingBoyLotList.stream().filter(x->name.equals(x.getName())).findAny().orElse(null).manage(parkingLot);
     }
-    public ParkingTicket park(Car car) {
-        for(ParkingLot parkingLot: this.parkingLotList){
-            value = parkingLot.getOccupied();
-            availableSpace = value != 10 ? parkingLot
-                    :availableSpace;
-        }
-        try {
-            return availableSpace.park(car);
-        }
-        catch (Exception e){throw new NotEnoughPositionException("Not enough position");}
+    public ParkingTicket parkingBoyPark(CarParked car, String name){
+
+       return parkingBoyLotList.stream().filter(x -> name.equals(x.getName())).findAny().orElse(null).park(car);
+
+    }
+    public ParkingTicket park(CarParked car) {
+        availableSpace = this.parkingLotList.stream().filter(x->x.getOccupied() != 10).findAny().orElseThrow(()->new NotEnoughPositionException("Not enough position"));
+
+        return availableSpace.park(car);
     }
 
 
-    public Car fetch(ParkingTicket parkingTicket, String name) {
-        index = this.parkingBoyName.indexOf(name);
-        return this.parkingBoyLotList.get(index).fetch(parkingTicket);
+    public CarParked fetch(ParkingTicket parkingTicket, String name) {
+        return this.parkingBoyLotList.stream().filter(x -> name.equals(x.getName())).findAny().orElse(null).fetch(parkingTicket);
+
     }
     public int geLotNumber(){
-        return this.parkingBoyLotList.get(index).geLotNumber();
+        return availableSpace.getLotNumber();
     }
-    public String getParkingBoy(){
-
-        return this.parkingBoyName.get(index);
+    public String getParkingBoy(ParkingTicket ticket, CarParked car){
+        return this.parkingBoyLotList.stream().filter(x -> car.equals(x.fetch(ticket))).findAny().orElse(null).getName();
     }
 }

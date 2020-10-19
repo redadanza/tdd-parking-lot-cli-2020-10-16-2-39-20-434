@@ -3,15 +3,12 @@ package com.oocl.cultivation;
 import java.util.*;
 
 public class ParkingLot {
-    private Map<ParkingTicket, Car> ticketCarMap = new HashMap<>();
-    private ArrayList<Car> ticketList = new ArrayList<Car>();
-    private int capacity = 10;
-    private int occupied = 0;
-    private int lotNumber = 1;
-    private int numberOfLots = 1;
-    private int lotsFull = 0;
+    private Map<ParkingTicket, CarParked> ticketCarMap = new HashMap<>();
+    private ArrayList<CarParked> ticketList = new ArrayList<CarParked>();
+    private int capacity;
+    private int occupied;
+    private int lotNumber;
     String status = "";
-
     public ParkingLot(int capacity,int occupied, int lotNumber){
             this.capacity = capacity;
             this.occupied = occupied;
@@ -20,36 +17,27 @@ public class ParkingLot {
     public ParkingLot(int occupied, int lotNumber) {
         this.occupied = occupied;
         this.lotNumber = lotNumber;
+        this.capacity = 10;
     }
     public ParkingLot(){
+        this.occupied = 0;
+        this.lotNumber = 1;
+        this.capacity = 10;
     }
 
     public int getLotNumber() {
         return lotNumber;
     }
 
-    public int getCapacity() {
-        return capacity;
-    }
-
     public int getOccupied() {
         return occupied;
     }
 
-    public ParkingTicket park(Car car) {
+    public ParkingTicket park(CarParked car) {
         ParkingTicket ticket = new ParkingTicket();
-
         if(ticketCarMap.size() == capacity || occupied == capacity)
         {
-            lotsFull++;
-            if(lotsFull == numberOfLots) {
-                throw new NotEnoughPositionException("Not enough position");
-            }
-            else{
-                lotNumber++;
-                capacity += 10;
-                ticketCarMap.put(ticket,car);
-            }
+            throw new NotEnoughPositionException("Not enough position");
         }
         else {
             ticketCarMap.put(ticket, car);
@@ -57,15 +45,15 @@ public class ParkingLot {
         return ticket;
     }
 
-    public Car fetch(ParkingTicket parkingTicket) {
-        Car car = ticketCarMap.get(parkingTicket);
+    public CarParked fetch(ParkingTicket parkingTicket) {
+        CarParked car = ticketCarMap.get(parkingTicket);
         if(car == null){
             throw new ProvideTicketException("Please provide your parking ticket.");
         }
        status = ticketList.contains(car) ? "exist"
                : "new car";
 
-        Car ticket = new Car();
+        CarParked ticket = new CarParked();
         if(status.equals("exist")) {
            throw new UnrecognizedParkingTicket("Unrecognized Parking Ticket");
        }

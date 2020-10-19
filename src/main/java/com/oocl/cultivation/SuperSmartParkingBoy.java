@@ -1,14 +1,13 @@
 package com.oocl.cultivation;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class SuperSmartParkingBoy{
     ArrayList<ParkingLot> parkingLotList = new ArrayList<ParkingLot>();
-    private double max = 0;
-    int largestSpace = 0;
 
-    public SuperSmartParkingBoy(int numberOfLots) {
-    }
+    ParkingLot parkingLot;
+
     public SuperSmartParkingBoy() {
         ParkingLot parkingLot = new ParkingLot();
     }
@@ -16,23 +15,16 @@ public class SuperSmartParkingBoy{
         this.parkingLotList.add(parkingLot);
     }
 
-    public ParkingTicket park(Car car) {
-
-        for(int i = 0; i < this.parkingLotList.size(); i++){
-            if(this.parkingLotList.get(i).getRatio() >= max){
-                max = this.parkingLotList.get(i).getRatio();
-                largestSpace = i;
-            }
-        }
-        return this.parkingLotList.get(largestSpace).park(car);
+    public ParkingTicket park(CarParked car) {
+        parkingLot = this.parkingLotList.stream().max(Comparator.comparing(ParkingLot::getRatio)).get();
+        return  parkingLot.park(car);
     }
 
-    public Car fetch(ParkingTicket parkingTicket) {
-        return this.parkingLotList.get(largestSpace).fetch(parkingTicket);
+    public CarParked fetch(ParkingTicket parkingTicket) {
+        return parkingLot.fetch(parkingTicket);
     }
     public int geLotNumber(){
-        return  this.parkingLotList.get(largestSpace).getLotNumber();
-
+        return parkingLot.getLotNumber();
     }
 
 

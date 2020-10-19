@@ -6,29 +6,24 @@ public class ParkingBoy {
 
     private ArrayList<ParkingLot> parkingLotList = new ArrayList<ParkingLot>();
     ParkingLot availableSpace = null;
-    int value;
-    int index=0;
+    private String name = "";
 
     public ParkingBoy() {
-        ParkingLot parkingLot = new ParkingLot();
+    }
+    public ParkingBoy(String name){
+        this.name = name;
     }
     public void manage(ParkingLot parkingLot){
         this.parkingLotList.add(parkingLot);
     }
 
-    public ParkingTicket park(Car car) {
-        for(ParkingLot parkingLot: this.parkingLotList){
-            value = parkingLot.getOccupied();
-            availableSpace = value != 10 ? parkingLot
-                            :availableSpace;
-        }
-        try {
-            return availableSpace.park(car);
-        }
-        catch (Exception e){throw new NotEnoughPositionException("Not enough position");}
+    public ParkingTicket park(CarParked car) {
+        availableSpace = this.parkingLotList.stream().filter(x->x.getOccupied() != 10).findAny().orElseThrow(()->new NotEnoughPositionException("Not enough position"));
+
+        return availableSpace.park(car);
     }
 
-    public Car fetch(ParkingTicket parkingTicket) {
+    public CarParked fetch(ParkingTicket parkingTicket) {
 
         return availableSpace.fetch(parkingTicket);
     }
@@ -37,4 +32,7 @@ public class ParkingBoy {
         return availableSpace.getLotNumber();
     }
 
+    public String getName() {
+        return name;
+    }
 }
